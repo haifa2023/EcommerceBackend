@@ -34,7 +34,7 @@ router.post('/', async (req, res) => {
             
             res.status(200).json(cat);
             
-            13
+            
             
             } catch (error) {
             res.status(404).json({ message: error.message });
