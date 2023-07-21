@@ -13,6 +13,24 @@ router.get('/', async (req, res )=> {
     }
 
 });
+// afficher la liste des articles avec pagination.
+router.get('/productspage', async (req, res )=> {
+    const { page, pagesize } = req.query
+
+    //calculer le nbre d'élements a sauter (offset)
+    const offset =(page-1)* pagesize;
+    try {
+        //effectuer la requete a votre source de données en uti
+        const articles = await Article.find({}, null, {sort: {'_id': -1}} )
+            .skip(offset)
+            .limit(pagesize);
+                
+        res.status(200).json(articles);
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+
+});
 // créer un nouvel article
 router.post('/', async (req, res) =>  {
     
