@@ -5,8 +5,11 @@ const categorieRouter = require('./routes/categorie.route');
 const scategorieRouter = require('./routes/scategorie.route');
 const articleRouter = require('./routes/article.route');
 const cors = require ('cors');
+const paymentRouter = require( "./routes/payment.route.js")
+
 dotenv.config()
 const app = express();
+
 //BodyParser Middleware
 app.use(express.json());
 app.use (cors());
@@ -27,6 +30,7 @@ res.send("Bienvenue dans notre sitee");
 app.use("/api/categorie",categorieRouter)//na3tih route 5atr awel 7aja ychoufha wn3ml constnt fiha url
 app.use("/api/scategorie",scategorieRouter)//na3tih route 5atr awel 7aja ychoufha wn3ml constnt fiha url
 app.use("/api/article",articleRouter)//na3tih route 5atr awel 7aja ychoufha wn3ml constnt fiha url
+app.use('/api/payment', paymentRouter);
 
 app.listen(process.env.PORT, () => {
 console.log(`Server is listening on port ${process.env.PORT}`); });
